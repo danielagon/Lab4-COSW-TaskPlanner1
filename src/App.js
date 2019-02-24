@@ -1,28 +1,40 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {Login} from "./component/Login";
+
+localStorage.setItem('username','Daniela');
+localStorage.setItem('password','cosw2019');
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div className="App">
+                <header className="App-header">
+                    <Login/>
+                </header>
+            </div>
+        );
+    }
+
+    handleLogin(e) {
+        if (this.state.username === localStorage.getItem('username') && this.state.password === localStorage.getItem('password')){
+            alert('Logged');
+        }else{
+            console.log('Incorrect username or password');
+        }
+    }
+
+    handleUsernameChange(e) {
+        this.setState({
+            username: e.target.value
+        })
+    }
+
+    handlePasswordChange(e) {
+        this.setState({
+            password: e.target.value
+        })
+    }
 }
 
 export default App;
