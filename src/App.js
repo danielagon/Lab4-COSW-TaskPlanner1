@@ -1,39 +1,27 @@
 import React, { Component } from 'react';
 import './App.css';
 import {Login} from "./component/Login";
-
-localStorage.setItem('username','Daniela');
-localStorage.setItem('password','cosw2019');
+import NavigationDrawer from "./component/NavigationDrawer";
 
 class App extends Component {
+
+    constructor(props) {
+        super(props);
+        localStorage.setItem('username','Daniela');
+        localStorage.setItem('password','cosw2019');
+    }
+
     render() {
         return (
             <div className="App">
                 <header className="App-header">
-                    <Login/>
+                    {localStorage.getItem('page') === 'home' ?
+                        <NavigationDrawer/> :
+                        <Login/>
+                    }
                 </header>
             </div>
         );
-    }
-
-    handleLogin(e) {
-        if (this.state.username === localStorage.getItem('username') && this.state.password === localStorage.getItem('password')){
-            alert('Logged');
-        }else{
-            console.log('Incorrect username or password');
-        }
-    }
-
-    handleUsernameChange(e) {
-        this.setState({
-            username: e.target.value
-        })
-    }
-
-    handlePasswordChange(e) {
-        this.setState({
-            password: e.target.value
-        })
     }
 }
 
